@@ -31,6 +31,7 @@
 @push('scripts')
     <script type="text/javascript">
         var user = <?php echo json_encode(Auth::user()); ?>;
+        var video = <?php echo json_encode($video); ?>;
     </script>
     <script type="text/javascript" src="{{ asset('vendor/video.js/dist/video.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/videojs-annotation-comments/build/videojs-annotation-comments.js') }}"></script>

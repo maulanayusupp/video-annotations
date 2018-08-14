@@ -102,9 +102,12 @@ var exampleAnnotations = [
 		]
 	}
 ];
+
+var annotations = JSON.parse(video.annotations);
+
 var playerOptions = { controlBar: { volumePanel: { inline: false } } };
 var pluginOptions = {
-	annotationsObjects: [],
+	annotationsObjects: annotations,
 	bindArrowKeys: true,
 	meta: {
 		user_id: user.id,
@@ -121,13 +124,27 @@ var player = window.videojs('video-1', playerOptions);
 player.ready(function(){
 	var plugin = player.annotationComments(pluginOptions);
 	plugin.onReady(function(){
-		console.log("PLUGIN IS READY!", 1);
+		console.log("Video:", video.name);
 	});
 	player.muted(false);
 
 	plugin.on('onStateChanged', (event) => {
-		console.log(event.detail);
-	    // event.detail = annotation state data
+		var params = {
+			annotations: JSON.stringify(event.detail)
+		}
+	    axios.post(`${Laravel.url}/api/videos/update/annotations/${video.id}`, params)
+	    .then(function (response) {
+	    	// console.log(response);
+	    	/*var error = response.data.error;
+	    	if (error == 0) {
+	    		
+	    	} else {
+
+	    	}*/
+	    })
+	    .catch(function (response) {
+	    	console.log(response);
+	    });
 	});
 });
 

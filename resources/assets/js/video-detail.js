@@ -103,7 +103,10 @@ var exampleAnnotations = [
 	}
 ];
 
-var annotations = JSON.parse(video.annotations);
+var annotations = []
+if (video.annotations != null) {
+	annotations = JSON.parse(video.annotations);
+}
 
 var playerOptions = { controlBar: { volumePanel: { inline: false } } };
 var pluginOptions = {

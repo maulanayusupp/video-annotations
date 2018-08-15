@@ -10,8 +10,8 @@
                     <label class="float-right">Video: {{ $video->name }}</label>
                 </div>
 
-                <div class="card-body">
-                    <video id="video-1" class="video-js vjs-big-play-centered vjs-16-9" controls preload="auto" width="640" height="264" data-setup="{}">
+                <div class="card-body" style="padding: 0;">
+                    <video id="video-1" class="video-js vjs-big-play-centered vjs-16-9" controls preload="auto" width="640" height="264" data-setup="{}" style="margin: 0;">
                         <source src="{{ asset($video->path) }}" type='video/mp4'>
                         <source src="{{ asset($video->path) }}" type='video/webm'>
                       </video>

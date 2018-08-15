@@ -53,7 +53,7 @@ class AdminVideosController extends Controller
         $path_file = null;
         $file_request = $request->file('file');
         if($file_request != ''){
-            $path_file = Helper::uploadFile($file_request, 'images', 'videos');
+            $path_file = Helper::uploadFile($file_request, 'videos', 'videos');
         }
         $video->path = $path_file;
         $video->save();
@@ -107,7 +107,7 @@ class AdminVideosController extends Controller
         $path_file = null;
         $file_request = $request->file('file');
         if($file_request != ''){
-            $path_file = Helper::uploadFile($file_request, 'images', 'videos');
+            $path_file = Helper::uploadFile($file_request, 'videos', 'videos');
         } else {
             $path_file = $video->path;
         }

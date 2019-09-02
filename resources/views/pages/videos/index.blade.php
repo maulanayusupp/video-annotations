@@ -15,16 +15,22 @@
                         <thead>
                             <tr>
                                 <th width="100%">Name</th>
-                                {{-- <th width="20%">Actions</th> --}}
+                                <th width=""></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($videos as $video)
                                 <tr>
                                     <td><a href="{{ route('admin.videos.show', $video->id) }}">{{ $video->name }}</a></td>
+                                    <td>
+                                        <form action="{{ route('admin.videos.destroy', $video->id) }}" }} method="post">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
-                            
                         </tbody>
                     </table>
                 </div>

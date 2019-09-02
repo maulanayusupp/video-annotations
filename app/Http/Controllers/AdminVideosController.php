@@ -16,7 +16,7 @@ class AdminVideosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $videos = Video::orderBy('created_at', 'desc')->get();
         $data['videos'] = $videos;
         return view('pages.videos.index', $data);
@@ -115,7 +115,6 @@ class AdminVideosController extends Controller
         $video->save();
 
         return redirect('/admin/videos');
-        
     }
 
     /**
@@ -126,6 +125,12 @@ class AdminVideosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $video = Video::find($id);
+
+        if ($video) {
+            $video->delete();
+        }
+
+        return redirect('/admin/videos');
     }
 }
